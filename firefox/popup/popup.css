@@ -1,0 +1,213 @@
+/* tabsnap popup — Surgical personality.
+   Crisp monospace catalog. The popup IS the tab list. */
+
+:root{
+  --bg:#0a0d12;
+  --bg-2:#10141c;
+  --line:rgba(255,255,255,0.07);
+  --txt-1:#e9ecf2;
+  --txt-2:#a0a6b3;
+  --txt-3:#5e6470;
+  --acc:#7bd88f;
+  --acc-soft:rgba(123,216,143,0.12);
+  --warn:#f5b14e;
+  --danger:#ff7878;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{
+  width:380px;
+  background:var(--bg);
+  color:var(--txt-1);
+  font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:13px;
+  line-height:1.5;
+}
+body{padding:14px 16px 12px;}
+
+.ts-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.ts-brand{display:flex;align-items:center;gap:8px;}
+.ts-glyph{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;
+  background:var(--acc-soft);
+  border:1px solid rgba(123,216,143,0.35);
+  border-radius:4px;
+  color:var(--acc);
+  font-size:14px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+}
+.ts-title{
+  font-weight:600;font-size:13px;letter-spacing:-0.005em;
+}
+.ts-counter{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;
+  color:var(--txt-3);
+  text-transform:uppercase;
+  letter-spacing:0.10em;
+}
+
+.ts-format{margin-top:12px;}
+.ts-format-lbl{
+  display:block;
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:0.18em;
+  color:var(--txt-3);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  margin-bottom:6px;
+}
+.ts-segmented{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:2px;
+}
+.ts-seg{
+  background:transparent;
+  border:none;
+  color:var(--txt-2);
+  font:inherit;
+  font-size:11.5px;
+  padding:5px 6px;
+  border-radius:4px;
+  cursor:pointer;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  transition:background 0.12s,color 0.12s;
+}
+.ts-seg:hover{color:var(--txt-1);}
+.ts-seg[aria-pressed="true"]{
+  background:var(--acc-soft);
+  color:var(--acc);
+}
+
+.ts-options{
+  margin-top:10px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4px 14px;
+}
+.ts-opt{
+  display:flex;align-items:center;gap:7px;
+  font-size:11.5px;
+  color:var(--txt-2);
+  cursor:pointer;
+  user-select:none;
+}
+.ts-opt input[type="checkbox"]{
+  appearance:none;
+  width:13px;height:13px;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:3px;
+  flex:none;
+  cursor:pointer;
+  position:relative;
+}
+.ts-opt input[type="checkbox"]:checked{
+  background:var(--acc);
+  border-color:var(--acc);
+}
+.ts-opt input[type="checkbox"]:checked::after{
+  content:"";
+  position:absolute;
+  left:3px;top:0;
+  width:4px;height:8px;
+  border:solid var(--bg);
+  border-width:0 1.6px 1.6px 0;
+  transform:rotate(45deg);
+}
+
+.ts-preview-wrap{margin-top:14px;}
+.ts-preview-head{
+  display:flex;justify-content:space-between;
+  font-size:10.5px;
+  color:var(--txt-3);
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  margin-bottom:5px;
+}
+.ts-preview{
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:9px 11px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  color:var(--txt-1);
+  max-height:160px;
+  overflow:auto;
+  white-space:pre;
+  scrollbar-color:var(--txt-3) transparent;
+  scrollbar-width:thin;
+}
+.ts-preview::-webkit-scrollbar{width:6px;height:6px;}
+.ts-preview::-webkit-scrollbar-thumb{background:var(--txt-3);border-radius:3px;}
+.ts-preview:empty::before{
+  content:"capturing tabs…";
+  color:var(--txt-3);
+  font-style:italic;
+}
+
+.ts-actions{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+.ts-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  color:var(--txt-1);
+  padding:8px 10px;
+  font:inherit;font-size:12.5px;font-weight:500;
+  border-radius:6px;
+  cursor:pointer;
+  transition:border-color 0.12s,background 0.12s;
+  font-family:ui-sans-serif,system-ui,sans-serif;
+}
+.ts-btn:hover{border-color:rgba(123,216,143,0.40);}
+.ts-btn-primary{
+  background:var(--acc);
+  border-color:var(--acc);
+  color:var(--bg);
+  font-weight:600;
+}
+.ts-btn-primary:hover{
+  background:#8cdf9e;
+  border-color:#8cdf9e;
+}
+.ts-icon{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;
+}
+
+.ts-foot{
+  margin-top:11px;padding-top:9px;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10.5px;
+  color:var(--txt-3);
+}
+.ts-foot a{color:var(--txt-3);text-decoration:none;}
+.ts-foot a:hover{color:var(--txt-1);}
+.ts-foot-mid{font-family:'JetBrains Mono',ui-monospace,monospace;}
+.ts-stroke{color:var(--acc);font-weight:700;}
+.ts-status{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  color:var(--acc);
+  opacity:0;
+  transition:opacity 0.18s;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  font-size:10px;
+}
+.ts-status.show{opacity:1;}
+.ts-char{font-family:'JetBrains Mono',ui-monospace,monospace;}

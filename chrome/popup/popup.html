@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>tabsnap</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="ts-head">
+    <div class="ts-brand">
+      <span class="ts-glyph">&#x25A2;</span>
+      <span class="ts-title">tabsnap</span>
+    </div>
+    <span class="ts-counter" id="counter">— tabs · — windows</span>
+  </header>
+
+  <section class="ts-format">
+    <label class="ts-format-lbl">format</label>
+    <div class="ts-segmented" role="tablist" aria-label="output format">
+      <button class="ts-seg" data-fmt="markdown" aria-pressed="true">markdown</button>
+      <button class="ts-seg" data-fmt="plain">plain</button>
+      <button class="ts-seg" data-fmt="json">json</button>
+      <button class="ts-seg" data-fmt="readme">readme</button>
+    </div>
+  </section>
+
+  <section class="ts-options">
+    <label class="ts-opt">
+      <input type="checkbox" id="optGroupByWindow" checked>
+      <span>group by window</span>
+    </label>
+    <label class="ts-opt">
+      <input type="checkbox" id="optIncludePinned">
+      <span>include pinned tabs</span>
+    </label>
+    <label class="ts-opt">
+      <input type="checkbox" id="optIncludeIncognito">
+      <span>include incognito (if allowed)</span>
+    </label>
+    <label class="ts-opt">
+      <input type="checkbox" id="optCurrentWindowOnly">
+      <span>current window only</span>
+    </label>
+  </section>
+
+  <section class="ts-preview-wrap">
+    <div class="ts-preview-head">
+      <span>preview</span>
+      <span id="charCount" class="ts-char">0 chars</span>
+    </div>
+    <pre class="ts-preview" id="preview"></pre>
+  </section>
+
+  <section class="ts-actions">
+    <button id="copy" class="ts-btn ts-btn-primary">
+      <span class="ts-icon">&#x270E;</span>
+      copy
+    </button>
+    <button id="download" class="ts-btn">
+      <span class="ts-icon">&#x2B07;</span>
+      download
+    </button>
+  </section>
+
+  <footer class="ts-foot">
+    <a href="https://extensions.voiddo.com/tabsnap/" target="_blank" rel="noopener">about</a>
+    <span class="ts-foot-mid">v<span class="ts-stroke">&oslash;</span>iddo</span>
+    <span id="status" class="ts-status"></span>
+  </footer>
+
+  <script src="snapshot.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# build artifacts
+dist/*.zip
+*.zip
+
+# os
+.DS_Store
+Thumbs.db
+*.swp
+
+# editor
+.vscode/
+.idea/
+
+# scratch
+/tmp/
+*.log
