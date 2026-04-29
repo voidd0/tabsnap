@@ -123,5 +123,6 @@ npm publish --access public
 
 MIT — see `LICENSE`.
 
-Built by [vøiddo](https://voiddo.com/), a small studio shipping AI-flavoured
-tools, browser extensions and weird browser games.
+---
+
+Built by [vøiddo](https://voiddo.com/) — a small studio shipping AI-flavoured products, free dev tools, Chrome extensions and weird browser games.
