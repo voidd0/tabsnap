@@ -1,5 +1,11 @@
 # tabsnap
 
+[![npm version](https://img.shields.io/npm/v/@v0idd0/tabsnap.svg?color=A0573A)](https://www.npmjs.com/package/@v0idd0/tabsnap)
+[![npm downloads](https://img.shields.io/npm/dw/@v0idd0/tabsnap.svg?color=1F1A14)](https://www.npmjs.com/package/@v0idd0/tabsnap)
+[![License: MIT](https://img.shields.io/badge/license-MIT-A0573A.svg)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/manifest-v3-1F1A14)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+[![Built by vøiddo](https://img.shields.io/badge/built%20by-v%C3%B8iddo-1F1A14)](https://voiddo.com/)
+
 > Capture every open tab as plain text, markdown, JSON, or a readme file.
 > One click in the browser. One pipe in the terminal.
 > Free, MIT, zero telemetry.
