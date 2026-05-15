@@ -1,213 +1,263 @@
-/* tabsnap popup — Surgical personality.
-   Crisp monospace catalog. The popup IS the tab list. */
+/* tabsnap popup — Atmospheric personality (cinematic glass-frosted sunset).
+   Built per /root/voiddo-extensions/tabsnap/brand-spec.md (huashu-design §1.a). */
 
 :root{
-  --bg:#0a0d12;
-  --bg-2:#10141c;
-  --line:rgba(255,255,255,0.07);
-  --txt-1:#e9ecf2;
-  --txt-2:#a0a6b3;
-  --txt-3:#5e6470;
-  --acc:#7bd88f;
-  --acc-soft:rgba(123,216,143,0.12);
-  --warn:#f5b14e;
-  --danger:#ff7878;
+  --ts-ink:#0E1418;
+  --ts-ink-2:#152027;
+  --ts-deep:#1F3A3D;
+  --ts-water:#4A6E70;
+  --ts-glass:rgba(168,213,208,0.10);
+  --ts-glass-edge:rgba(212,232,229,0.22);
+  --ts-mist:#A8D5D0;
+  --ts-amber:#F5B860;
+  --ts-amber-soft:rgba(245,184,96,0.14);
+  --ts-amber-deep:#D89456;
+  --ts-rose:#C97B5C;
+  --ts-text-1:#E8EDE8;
+  --ts-text-2:#A4ADAB;
+  --ts-text-3:#6B7479;
+  --line:rgba(212,232,229,0.10);
+  --line-soft:rgba(212,232,229,0.05);
+  --serif:'Newsreader','Source Serif 4',Charter,Georgia,serif;
+  --sans:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{
   width:380px;
-  background:var(--bg);
-  color:var(--txt-1);
-  font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+  background:var(--ts-ink);
+  background-image:
+    radial-gradient(120% 80% at 50% 100%, rgba(245,184,96,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ts-ink) 0%, #131C22 50%, #1A2A2D 100%);
+  color:var(--ts-text-1);
+  font-family:var(--sans);
   font-size:13px;
   line-height:1.5;
+  -webkit-font-smoothing:antialiased;
 }
-body{padding:14px 16px 12px;}
+body{padding:16px 18px 14px;}
 
+/* ── header ─────────────────────────────────────────── */
 .ts-head{
   display:flex;align-items:center;justify-content:space-between;
-  padding-bottom:10px;
+  padding-bottom:12px;
   border-bottom:1px solid var(--line);
 }
-.ts-brand{display:flex;align-items:center;gap:8px;}
-.ts-glyph{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:22px;height:22px;
-  background:var(--acc-soft);
-  border:1px solid rgba(123,216,143,0.35);
-  border-radius:4px;
-  color:var(--acc);
-  font-size:14px;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
+.ts-brand{display:flex;align-items:center;gap:10px;}
+.ts-mark{
+  width:26px;height:26px;
+  flex:none;
+  border-radius:5px;
+  display:block;
 }
 .ts-title{
-  font-weight:600;font-size:13px;letter-spacing:-0.005em;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:18px;
+  letter-spacing:-0.01em;
+  color:var(--ts-text-1);
 }
 .ts-counter{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10.5px;
-  color:var(--txt-3);
-  text-transform:uppercase;
-  letter-spacing:0.10em;
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ts-text-3);
+  text-transform:lowercase;
+  letter-spacing:0.06em;
 }
 
-.ts-format{margin-top:12px;}
+/* ── format selector (frosted glass tabs) ───────────── */
+.ts-format{margin-top:14px;}
 .ts-format-lbl{
   display:block;
-  font-size:10.5px;
+  font-family:var(--mono);
+  font-size:10px;
   text-transform:uppercase;
-  letter-spacing:0.18em;
-  color:var(--txt-3);
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  margin-bottom:6px;
+  letter-spacing:0.20em;
+  color:var(--ts-text-3);
+  margin-bottom:7px;
 }
 .ts-segmented{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:2px;
-  background:var(--bg-2);
-  border:1px solid var(--line);
-  border-radius:6px;
-  padding:2px;
+  background:var(--ts-glass);
+  border:1px solid var(--ts-glass-edge);
+  border-top-color:rgba(212,232,229,0.30);
+  border-radius:7px;
+  padding:3px;
+  backdrop-filter:blur(2px);
 }
 .ts-seg{
   background:transparent;
   border:none;
-  color:var(--txt-2);
-  font:inherit;
+  color:var(--ts-text-2);
+  font-family:var(--sans);
   font-size:11.5px;
-  padding:5px 6px;
-  border-radius:4px;
+  font-weight:500;
+  padding:6px 6px;
+  border-radius:5px;
   cursor:pointer;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  transition:background 0.12s,color 0.12s;
+  transition:background 0.16s ease, color 0.16s ease;
+  letter-spacing:0;
 }
-.ts-seg:hover{color:var(--txt-1);}
+.ts-seg:hover{color:var(--ts-text-1);}
 .ts-seg[aria-pressed="true"]{
-  background:var(--acc-soft);
-  color:var(--acc);
+  background:var(--ts-amber-soft);
+  color:var(--ts-amber);
+  box-shadow:inset 0 0 0 1px rgba(245,184,96,0.30);
 }
 
+/* ── options ────────────────────────────────────────── */
 .ts-options{
-  margin-top:10px;
+  margin-top:11px;
   display:grid;grid-template-columns:1fr 1fr;
-  gap:4px 14px;
+  gap:5px 16px;
 }
 .ts-opt{
-  display:flex;align-items:center;gap:7px;
+  display:flex;align-items:center;gap:8px;
   font-size:11.5px;
-  color:var(--txt-2);
+  color:var(--ts-text-2);
   cursor:pointer;
   user-select:none;
 }
 .ts-opt input[type="checkbox"]{
   appearance:none;
   width:13px;height:13px;
-  background:var(--bg-2);
-  border:1px solid var(--line);
+  background:var(--ts-glass);
+  border:1px solid var(--ts-glass-edge);
   border-radius:3px;
   flex:none;
   cursor:pointer;
   position:relative;
+  transition:background 0.14s, border-color 0.14s;
 }
 .ts-opt input[type="checkbox"]:checked{
-  background:var(--acc);
-  border-color:var(--acc);
+  background:var(--ts-amber);
+  border-color:var(--ts-amber);
 }
 .ts-opt input[type="checkbox"]:checked::after{
   content:"";
   position:absolute;
-  left:3px;top:0;
+  left:3.5px;top:0;
   width:4px;height:8px;
-  border:solid var(--bg);
+  border:solid var(--ts-ink);
   border-width:0 1.6px 1.6px 0;
   transform:rotate(45deg);
 }
 
-.ts-preview-wrap{margin-top:14px;}
+/* ── preview pane (the data is code-like, mono earns place) ─ */
+.ts-preview-wrap{margin-top:15px;}
 .ts-preview-head{
   display:flex;justify-content:space-between;
-  font-size:10.5px;
-  color:var(--txt-3);
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ts-text-3);
   text-transform:uppercase;
   letter-spacing:0.16em;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 .ts-preview{
-  background:var(--bg-2);
+  background:var(--ts-glass);
   border:1px solid var(--line);
-  border-radius:6px;
-  padding:9px 11px;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
+  border-top-color:var(--ts-glass-edge);
+  border-radius:7px;
+  padding:11px 13px;
+  font-family:var(--mono);
   font-size:11px;
-  color:var(--txt-1);
+  color:var(--ts-text-1);
   max-height:160px;
   overflow:auto;
   white-space:pre;
-  scrollbar-color:var(--txt-3) transparent;
+  scrollbar-color:var(--ts-water) transparent;
   scrollbar-width:thin;
+  line-height:1.6;
 }
 .ts-preview::-webkit-scrollbar{width:6px;height:6px;}
-.ts-preview::-webkit-scrollbar-thumb{background:var(--txt-3);border-radius:3px;}
+.ts-preview::-webkit-scrollbar-thumb{
+  background:var(--ts-water);
+  border-radius:3px;
+}
 .ts-preview:empty::before{
   content:"capturing tabs…";
-  color:var(--txt-3);
+  color:var(--ts-text-3);
   font-style:italic;
+  font-family:var(--serif);
 }
 
+/* ── action buttons (sunset CTA) ────────────────────── */
 .ts-actions{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:12px;
+  gap:9px;
+  margin-top:13px;
 }
 .ts-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  background:var(--bg-2);
-  border:1px solid var(--line);
-  color:var(--txt-1);
-  padding:8px 10px;
-  font:inherit;font-size:12.5px;font-weight:500;
-  border-radius:6px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  background:var(--ts-glass);
+  border:1px solid var(--ts-glass-edge);
+  color:var(--ts-text-1);
+  padding:9px 12px;
+  font-family:var(--sans);
+  font-size:12.5px;font-weight:500;
+  border-radius:7px;
   cursor:pointer;
-  transition:border-color 0.12s,background 0.12s;
-  font-family:ui-sans-serif,system-ui,sans-serif;
+  transition:background 0.16s, border-color 0.16s, color 0.16s;
+  letter-spacing:-0.005em;
 }
-.ts-btn:hover{border-color:rgba(123,216,143,0.40);}
+.ts-btn:hover{
+  border-color:rgba(245,184,96,0.40);
+  color:var(--ts-amber);
+}
 .ts-btn-primary{
-  background:var(--acc);
-  border-color:var(--acc);
-  color:var(--bg);
+  background:var(--ts-amber);
+  border-color:var(--ts-amber);
+  color:var(--ts-ink);
   font-weight:600;
+  box-shadow:0 4px 14px rgba(245,184,96,0.20);
 }
 .ts-btn-primary:hover{
-  background:#8cdf9e;
-  border-color:#8cdf9e;
+  background:var(--ts-amber-deep);
+  border-color:var(--ts-amber-deep);
+  color:var(--ts-ink);
 }
 .ts-icon{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-family:var(--mono);
   font-size:13px;
+  font-weight:600;
 }
 
+/* ── footer ─────────────────────────────────────────── */
 .ts-foot{
-  margin-top:11px;padding-top:9px;
+  margin-top:13px;padding-top:10px;
   border-top:1px solid var(--line);
   display:flex;justify-content:space-between;align-items:center;
   font-size:10.5px;
-  color:var(--txt-3);
+  color:var(--ts-text-3);
 }
-.ts-foot a{color:var(--txt-3);text-decoration:none;}
-.ts-foot a:hover{color:var(--txt-1);}
-.ts-foot-mid{font-family:'JetBrains Mono',ui-monospace,monospace;}
-.ts-stroke{color:var(--acc);font-weight:700;}
+.ts-foot a{
+  color:var(--ts-text-3);
+  text-decoration:none;
+  transition:color 0.14s;
+}
+.ts-foot a:hover{color:var(--ts-amber);}
+.ts-foot-mid{
+  font-family:var(--serif);
+  font-size:11.5px;
+  font-weight:400;
+  letter-spacing:-0.005em;
+}
+.ts-stroke{color:var(--ts-amber);font-weight:500;}
 .ts-status{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  color:var(--acc);
+  font-family:var(--mono);
+  color:var(--ts-amber);
   opacity:0;
-  transition:opacity 0.18s;
+  transition:opacity 0.20s;
   text-transform:uppercase;
   letter-spacing:0.14em;
   font-size:10px;
 }
 .ts-status.show{opacity:1;}
-.ts-char{font-family:'JetBrains Mono',ui-monospace,monospace;}
+.ts-char{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ts-text-3);
+}

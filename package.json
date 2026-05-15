@@ -1,6 +1,6 @@
 {
   "name": "@v0idd0/tabsnap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "tabsnap — format a tab list (or any tabs-shaped JSON) as markdown, plain text, JSON, or a readme file. Library + CLI. Same formatters that power the tabsnap browser extension. Zero deps. Free forever from vøiddo.",
   "main": "src/index.js",
   "bin": {
@@ -34,7 +34,7 @@
   ],
   "author": "vøiddo <support@voiddo.com> (https://voiddo.com)",
   "license": "MIT",
-  "homepage": "https://extensions.voiddo.com/tabsnap/",
+  "homepage": "https://tools.voiddo.com/tabsnap/?ref=tabsnap-npm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/voidd0/tabsnap.git"
