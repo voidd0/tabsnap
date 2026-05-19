@@ -6,14 +6,17 @@
 [![Manifest V3](https://img.shields.io/badge/manifest-v3-1F1A14)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Built by vøiddo](https://img.shields.io/badge/built%20by-v%C3%B8iddo-1F1A14)](https://voiddo.com/)
 
-> Capture every open tab as plain text, markdown, JSON, or a readme file.
+> Capture every open tab as a browser-session export: plain text, markdown, JSON, or a readme file.
 > One click in the browser. One pipe in the terminal.
 > Free, MIT, zero telemetry.
 
 [Browser-extension landing](https://extensions.voiddo.com/tabsnap/) ·
 [CLI landing](https://tools.voiddo.com/tabsnap/) ·
 [npm](https://www.npmjs.com/package/@v0idd0/tabsnap) ·
-[Privacy](https://extensions.voiddo.com/tabsnap/privacy/)
+[Privacy](https://extensions.voiddo.com/tabsnap/privacy/) ·
+[Compare](https://extensions.voiddo.com/compare/tab-saver/)
+
+If you think in tab backups, session exports, or a OneTab / Session Buddy alternative that still gives you a clean text artifact, tabsnap is the text-first path.
 
 ---
 
@@ -127,6 +130,7 @@ npm publish --access public
 
 ## From the same studio
 
+- **[@v0idd0/interviewprep](https://www.npmjs.com/package/@v0idd0/interviewprep)** — turn a job posting into a prep brief, then export it in browser or CLI
 - **[@v0idd0/jsonyo](https://www.npmjs.com/package/@v0idd0/jsonyo)** — JSON swiss army knife, 18 commands, zero limits
 - **[@v0idd0/envguard](https://www.npmjs.com/package/@v0idd0/envguard)** — stop shipping `.env` drift to staging
 - **[@v0idd0/depcheck](https://www.npmjs.com/package/@v0idd0/depcheck)** — find unused dependencies in one command
