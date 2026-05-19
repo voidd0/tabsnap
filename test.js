@@ -21,6 +21,17 @@ const TABS = [
   { id:5, windowId:12, pinned:false, incognito:true,  title:'private tab',              url:'https://example.com/private' },
 ];
 
+const TRACKED_TABS = [
+  {
+    id: 6,
+    windowId: 13,
+    pinned: false,
+    incognito: false,
+    title: 'tracked article',
+    url: 'https://example.com/post?utm_source=newsletter&utm_medium=email&fbclid=123&ok=1#section',
+  },
+];
+
 console.log('@v0idd0/tabsnap — library tests');
 
 // ── filterTabs
@@ -85,6 +96,17 @@ ok('unknown format falls back to markdown', fb.includes('# tab snapshot'));
 // ── FORMATS export
 eq('FORMATS has 4 entries', FORMATS.length, 4);
 
+// ── stripTracking
+let strippedMd = formatTabs(TRACKED_TABS, 'markdown', { groupByWindow:false, stripTracking:true });
+ok('stripTracking removes marketing params from markdown', strippedMd.includes('https://example.com/post?ok=1#section'));
+ok('stripTracking markdown removes utm params', !strippedMd.includes('utm_source') && !strippedMd.includes('fbclid'));
+
+let strippedJson = JSON.parse(formatTabs(TRACKED_TABS, 'json', { groupByWindow:false, stripTracking:true }));
+eq('stripTracking json keeps a cleaned url', strippedJson.tabs[0].url, 'https://example.com/post?ok=1#section');
+
+let unstrippedPlain = formatTabs(TRACKED_TABS, 'plain', { groupByWindow:false, stripTracking:false });
+ok('plain without stripTracking keeps query params', unstrippedPlain.includes('utm_source=newsletter'));
+
 // ── markdown escaping
 let escaped = formatTabs([{id:1,windowId:1,title:'test [bracket] *star*',url:'https://x.com'}], 'markdown', {});
 ok('markdown escapes brackets', escaped.includes('\\[bracket\\]'));
@@ -112,6 +134,10 @@ eq('CLI json --no-group has tabs not windows', Array.isArray(cliJson.tabs), true
 // CLI: --include-pinned
 let cliPinned = cliRun(['--include-pinned'], JSON.stringify(TABS));
 ok('CLI --include-pinned keeps pinned tab', cliPinned.includes('voidd0/tabsnap'));
+
+// CLI: --strip-tracking
+let cliStrip = JSON.parse(cliRun(['--format=json', '--strip-tracking', '--no-group'], JSON.stringify(TRACKED_TABS)));
+eq('CLI --strip-tracking cleans tracking params', cliStrip.tabs[0].url, 'https://example.com/post?ok=1#section');
 
 // CLI: accepts {tabs:[...]} shape
 let cliWrapped = cliRun(['--format=json'], JSON.stringify({ tabs: TABS }));

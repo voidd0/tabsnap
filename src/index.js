@@ -9,6 +9,26 @@ function escapeMarkdown(s) {
   return String(s).replace(/[\[\]\\`*_]/g, ch => '\\' + ch);
 }
 
+const TRACKING_PARAM_RE = /^(?:utm_[a-z0-9_]+|gclid|dclid|fbclid|msclkid|mc_cid|mc_eid|ref|ref_src|referrer|trk|igshid|_hsenc|_hsmi)$/i;
+
+function cleanUrl(url, opts) {
+  if (!url || !opts || !opts.stripTracking) return url;
+  try {
+    const parsed = new URL(url);
+    const keys = [...new Set([...parsed.searchParams.keys()])];
+    let changed = false;
+    for (const key of keys) {
+      if (TRACKING_PARAM_RE.test(key)) {
+        parsed.searchParams.delete(key);
+        changed = true;
+      }
+    }
+    return changed ? parsed.toString() : url;
+  } catch (_) {
+    return url;
+  }
+}
+
 function groupTabsByWindow(tabs) {
   const groups = new Map();
   for (const t of tabs) {
@@ -37,30 +57,30 @@ function fmtMarkdown(tabs, opts) {
   const dt = new Date().toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
   const head = '# tab snapshot · ' + t.length + ' tab' + (t.length === 1 ? '' : 's') + '\n_' + dt + '_\n\n';
   if (!opts.groupByWindow) {
-    return head + t.map(formatLineMd).join('\n') + '\n';
+    return head + t.map(tab => formatLineMd(tab, opts)).join('\n') + '\n';
   }
   const groups = groupTabsByWindow(t);
   return head + groups.map(g =>
     '## window ' + g.windowIndex + ' (' + g.tabs.length + ')\n' +
-    g.tabs.map(formatLineMd).join('\n') + '\n'
+    g.tabs.map(tab => formatLineMd(tab, opts)).join('\n') + '\n'
   ).join('\n');
 }
 
-function formatLineMd(tab) {
+function formatLineMd(tab, opts) {
   const title = escapeMarkdown(tab.title || '(untitled)');
-  return '- [' + title + '](' + tab.url + ')';
+  return '- [' + title + '](' + cleanUrl(tab.url, opts) + ')';
 }
 
 function fmtPlain(tabs, opts) {
   const t = filterTabs(tabs, opts);
   if (!opts.groupByWindow) {
-    return t.map(x => (x.title || '(untitled)') + '\n  ' + x.url).join('\n\n') + '\n';
+    return t.map(x => (x.title || '(untitled)') + '\n  ' + cleanUrl(x.url, opts)).join('\n\n') + '\n';
   }
   const groups = groupTabsByWindow(t);
   return groups.map(g =>
     'window ' + g.windowIndex + '  (' + g.tabs.length + ')\n' +
     '─'.repeat(40) + '\n' +
-    g.tabs.map(x => (x.title || '(untitled)') + '\n  ' + x.url).join('\n\n')
+    g.tabs.map(x => (x.title || '(untitled)') + '\n  ' + cleanUrl(x.url, opts)).join('\n\n')
   ).join('\n\n') + '\n';
 }
 
@@ -75,18 +95,18 @@ function fmtJson(tabs, opts) {
     out.windows = groupTabsByWindow(t).map(g => ({
       window_index: g.windowIndex,
       tab_count: g.tabs.length,
-      tabs: g.tabs.map(simplifyTab),
+      tabs: g.tabs.map(tab => simplifyTab(tab, opts)),
     }));
   } else {
-    out.tabs = t.map(simplifyTab);
+    out.tabs = t.map(tab => simplifyTab(tab, opts));
   }
   return JSON.stringify(out, null, 2) + '\n';
 }
 
-function simplifyTab(t) {
+function simplifyTab(t, opts) {
   return {
     title: t.title || null,
-    url: t.url || null,
+    url: cleanUrl(t.url, opts) || null,
     pinned: !!t.pinned,
     active: !!t.active,
     audible: !!t.audible,
@@ -107,12 +127,12 @@ function fmtReadme(tabs, opts) {
   domains += '\n';
   let body;
   if (!opts.groupByWindow) {
-    body = '## all tabs\n\n' + t.map(formatLineMd).join('\n') + '\n';
+    body = '## all tabs\n\n' + t.map(tab => formatLineMd(tab, opts)).join('\n') + '\n';
   } else {
     const groups = groupTabsByWindow(t);
     body = groups.map(g =>
       '## window ' + g.windowIndex + ' · ' + g.tabs.length + ' tab' + (g.tabs.length === 1 ? '' : 's') + '\n\n' +
-      g.tabs.map(formatLineMd).join('\n') + '\n'
+      g.tabs.map(tab => formatLineMd(tab, opts)).join('\n') + '\n'
     ).join('\n');
   }
   return head + domains + body;

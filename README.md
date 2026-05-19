@@ -8,7 +8,7 @@
 
 > Capture every open tab as a browser-session export: plain text, markdown, JSON, or a readme file.
 > One click in the browser. One pipe in the terminal.
-> Free, MIT, zero telemetry.
+> Free, MIT, zero telemetry. Optional tracking-param stripping for cleaner exports.
 
 [Browser-extension landing](https://extensions.voiddo.com/tabsnap/) ·
 [CLI landing](https://tools.voiddo.com/tabsnap/) ·
@@ -47,12 +47,16 @@ npm i -g @v0idd0/tabsnap
 cat tabs.json | tabsnap                    # markdown (default)
 cat tabs.json | tabsnap --format=readme    # readme.md
 cat tabs.json | tabsnap -f json --no-group # flat structured array
+cat tabs.json | tabsnap --strip-tracking    # clean tracking params first
 
 # from file
 tabsnap --file=tabs.json -f plain
 
 # include pinned + incognito tabs (skipped by default)
 tabsnap --include-pinned --include-incognito < tabs.json
+
+# strip common marketing params from exported URLs
+tabsnap --strip-tracking -f readme < tabs.json
 
 # pipe to clipboard (macOS) or any tool
 tabsnap --format=readme < tabs.json | pbcopy

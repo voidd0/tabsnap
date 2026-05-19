@@ -1,7 +1,7 @@
 {
   "name": "@v0idd0/tabsnap",
-  "version": "1.0.3",
-  "description": "tabsnap — browser session exporter and tab-list formatter for markdown, plain text, JSON, or a readme file. Library + CLI. Same formatters that power the tabsnap browser extension. Zero deps. Free forever from vøiddo.",
+  "version": "1.0.4",
+  "description": "tabsnap — browser session exporter and tab-list formatter for markdown, plain text, JSON, or a readme file. Library + CLI. Optional tracking-param stripping keeps exports clean. Same formatters that power the tabsnap browser extension. Zero deps. Free forever from vøiddo.",
   "main": "src/index.js",
   "bin": {
     "tabsnap": "./bin/tabsnap.js"
@@ -34,6 +34,9 @@
     "formatter",
     "json-to-markdown",
     "json-to-readme",
+    "tracking-params",
+    "utm",
+    "url-cleanup",
     "snapshot",
     "voiddo",
     "free",

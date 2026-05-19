@@ -25,6 +25,7 @@ options:
       --no-group          do not group by window (single flat list)
       --include-pinned    include pinned tabs (default: skip)
       --include-incognito include incognito-window tabs (default: skip)
+      --strip-tracking    remove common tracking params from exported urls
   -h, --help              this help
   -v, --version           print version
 
@@ -49,6 +50,7 @@ function parseArgs(argv) {
     groupByWindow: true,
     includePinned: false,
     includeIncognito: false,
+    stripTracking: false,
     help: false,
     version: false,
   };
@@ -59,6 +61,7 @@ function parseArgs(argv) {
     else if (a === '--no-group') opts.groupByWindow = false;
     else if (a === '--include-pinned') opts.includePinned = true;
     else if (a === '--include-incognito') opts.includeIncognito = true;
+    else if (a === '--strip-tracking') opts.stripTracking = true;
     else if (a.startsWith('--format=')) opts.format = a.slice(9);
     else if (a === '-f' || a === '--format') opts.format = argv[++i];
     else if (a.startsWith('--file=')) opts.file = a.slice(7);
@@ -142,6 +145,7 @@ async function main() {
     groupByWindow: opts.groupByWindow,
     includePinned: opts.includePinned,
     includeIncognito: opts.includeIncognito,
+    stripTracking: opts.stripTracking,
   });
   process.stdout.write(out);
 }
