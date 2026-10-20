@@ -1,7 +1,7 @@
 {
   "name": "@v0idd0/tabsnap",
-  "version": "1.0.4",
-  "description": "tabsnap — browser session exporter and tab-list formatter for markdown, plain text, JSON, or a readme file. Library + CLI. Optional tracking-param stripping keeps exports clean. Same formatters that power the tabsnap browser extension. Zero deps. Free forever from vøiddo.",
+  "version": "1.0.5",
+  "description": "Format a browser tab list as markdown, plain text, JSON or a readme. CLI and library with optional tracking parameter stripping. Same formatters as the tabsnap browser extension. No dependencies.",
   "main": "src/index.js",
   "bin": {
     "tabsnap": "./bin/tabsnap.js"
@@ -17,34 +17,21 @@
   ],
   "keywords": [
     "tabs",
-    "tab-snapshot",
     "tab-list",
     "browser-session",
-    "browser-session-export",
     "session-export",
-    "session-backup",
-    "tab-export",
-    "onetab",
-    "session-buddy",
     "markdown",
     "browser-extension",
     "chrome-tabs",
     "firefox-tabs",
-    "cli",
     "formatter",
-    "json-to-markdown",
-    "json-to-readme",
     "tracking-params",
     "utm",
-    "url-cleanup",
-    "snapshot",
-    "voiddo",
-    "free",
-    "zero-deps"
+    "cli"
   ],
   "author": "vøiddo <support@voiddo.com> (https://voiddo.com)",
   "license": "MIT",
-  "homepage": "https://tools.voiddo.com/tabsnap/?ref=tabsnap-npm",
+  "homepage": "https://extensions.voiddo.com/tabsnap/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/voidd0/tabsnap.git"

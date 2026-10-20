@@ -8,7 +8,7 @@
 
 > Capture every open tab as a browser-session export: plain text, markdown, JSON, or a readme file.
 > One click in the browser. One pipe in the terminal.
-> Free, MIT, zero telemetry. Optional tracking-param stripping for cleaner exports.
+> MIT licensed, zero telemetry. Optional tracking-param stripping for cleaner exports.
 
 [Browser-extension landing](https://extensions.voiddo.com/tabsnap/) ·
 [CLI landing](https://tools.voiddo.com/tabsnap/) ·
@@ -31,10 +31,10 @@ same inputs.
 Click the toolbar icon → tabsnap reads the title and URL of every tab you have
 open and renders them in the popup as one of four formats:
 
-- **markdown** — nested list grouped by window, hostnames as section headers
-- **plain** — one tab per line, title + URL
-- **json** — structured array, ready to feed into another tool
-- **readme.md** — full markdown document with a domain-summary table at the top
+- **markdown**: nested list grouped by window, hostnames as section headers
+- **plain**: one tab per line, title + URL
+- **json**: structured array, ready to feed into another tool
+- **readme.md**: full markdown document with a domain-summary table at the top
 
 Hit **copy** or **download** and you're done.
 
@@ -71,7 +71,7 @@ Accepted input shapes (the CLI auto-detects):
 // 2) {tabs:[…]} wrapper
 { "tabs": [ … ] }
 
-// 3) {windows:[{tabs:[…]}]} wrapper — also matches the JSON tabsnap exports
+// 3) {windows:[{tabs:[…]}]} wrapper, also matches the JSON tabsnap exports
 { "windows": [ {"window_index":1, "tabs":[…]}, … ] }
 ```
 
@@ -97,13 +97,13 @@ analytics. No telemetry.** Your tabs never leave your machine.
 
 Permissions:
 
-- `tabs` — list open tabs
-- `downloads` — save the snapshot to a file (only on user click)
-- `storage` — remember your popup preferences across sessions
+- `tabs`: list open tabs
+- `downloads`: save the snapshot to a file (only on user click)
+- `storage`: remember your popup preferences across sessions
 
 No host permissions. No `activeTab`. No content scripts.
 
-The CLI is a Node.js process — it cannot reach the browser. It only formats
+The CLI is a Node.js process: it cannot reach the browser. It only formats
 JSON you hand it.
 
 ## Repo layout
@@ -111,7 +111,7 @@ JSON you hand it.
     chrome/      Manifest V3 source for Chrome / Edge / Brave
     firefox/     Manifest V3 source with browser_specific_settings.gecko
     edge/        Manifest V3 source (mirrors chrome/)
-    src/         CLI / library source — published to npm as @v0idd0/tabsnap
+    src/         CLI / library source: published to npm as @v0idd0/tabsnap
     bin/         CLI entry point
     test.js      40 smoke tests for the lib + CLI
     dist/        Pre-built ZIPs ready for store submission
@@ -119,7 +119,7 @@ JSON you hand it.
 
 ## Build
 
-The platform directories are already self-contained — load any of
+The platform directories are already self-contained, load any of
 `chrome/`, `firefox/`, or `edge/` as an unpacked extension in the matching
 browser. The pre-built ZIPs in `dist/` are produced by zipping each platform
 directory.
@@ -132,19 +132,10 @@ node test.js     # run all 40 tests
 npm publish --access public
 ```
 
-## From the same studio
-
-- **[@v0idd0/interviewprep](https://www.npmjs.com/package/@v0idd0/interviewprep)** — turn a job posting into a prep brief, then export it in browser or CLI
-- **[@v0idd0/jsonyo](https://www.npmjs.com/package/@v0idd0/jsonyo)** — JSON swiss army knife, 18 commands, zero limits
-- **[@v0idd0/envguard](https://www.npmjs.com/package/@v0idd0/envguard)** — stop shipping `.env` drift to staging
-- **[@v0idd0/depcheck](https://www.npmjs.com/package/@v0idd0/depcheck)** — find unused dependencies in one command
-- **[@v0idd0/gitstats](https://www.npmjs.com/package/@v0idd0/gitstats)** — git repo analytics, one command
-- **[View all tools →](https://voiddo.com/tools/)**
-
 ## License
 
-MIT — see `LICENSE`.
+MIT: see `LICENSE`.
 
 ---
 
-Built by [vøiddo](https://voiddo.com/) — a small studio shipping AI-flavoured products, free dev tools, Chrome extensions and weird browser games.
+Maintained by v0idd0.
